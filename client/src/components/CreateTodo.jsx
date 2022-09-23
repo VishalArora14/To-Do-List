@@ -1,12 +1,7 @@
 import React from "react";
 import "../style.css";
-import axios from "axios";
 
 const api_base = "https://vishal-todo-app.herokuapp.com";
-
-// const client = axios.create({
-//   baseURL: api_base,
-// });
 
 function CreateTodo(props) {
   const [item, setItem] = props.hook1;
@@ -19,7 +14,7 @@ function CreateTodo(props) {
   };
 
   //Add Item
-  const addItem = (e) => {
+  const addItem = async (e) => {
     fetch(api_base + "/todos/new", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -32,44 +27,6 @@ function CreateTodo(props) {
         })
       )
       .catch((err) => console.error("Not connected"));
-
-
-    //attempt 1 
-    // const headers = { "Content-Type": "application/json" };
-    // axios
-    //   .post(
-    //     `${api_base}/todos/new`,
-    //     {
-    //       body: JSON.stringify({ task: item }),
-    //     },
-    //     headers
-    //   )
-    //   // .then((res) => res.json())
-    //   .then((data) =>
-    //     setList((oldList) => {
-    //       return [...oldList, { task: data.task, id: data._id }];
-    //     })
-    //   )
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
-
-    //attempt 2
-      // axios({
-      //   method: 'post',
-      //   url: `${api_base}/todos/new`,
-      //   data: JSON.stringify({ task: item }),
-      //   headers: {
-      //   'Content-Type': 'application/json'
-      //   }, 
-      // })
-      // .then((res) => res.json())
-      // .then((data) =>
-      //   setList((oldList) => {
-      //     return [...oldList, { task: data.task, id: data._id }];
-      //   })
-      // )
-      // .catch((err) => console.error("Not connected"));
 
     document.getElementsByClassName("inputItem").task.value = "";
   };

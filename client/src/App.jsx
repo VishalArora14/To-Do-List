@@ -8,7 +8,6 @@ import CreateTodo from "./components/CreateTodo";
 const api_base = "https://vishal-todo-app.herokuapp.com";
 
 function App() {
-  
   const [list, setList] = useState([]);
   const [item, setItem] = useState("");
 
