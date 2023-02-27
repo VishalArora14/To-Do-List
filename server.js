@@ -1,4 +1,3 @@
-const dotenv = require("dotenv");
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -7,18 +6,28 @@ const cors = require("cors");
 const app = express();
 
 // Config
-dotenv.config({ path: "config/config.env" });
+// dotenv.config({ path: "config/config.env" });
+if (process.env.NODE_ENV !== "production")
+  require("dotenv").config({ path: "config/config.env" });
 
 app.use(express.json());
 app.use(cors());
+const corsOptions = {
+  origin: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+};
+app.use(cors(corsOptions));
+
 
 // Connecting Database
+mongoose.set('strictQuery', false);
 mongoose
   .connect(process.env.DB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log("Connected to MongoDB"))
+  .then((data) => console.log(`Mongodb connected with server ${data.connection.host}`))
   .catch(console.error);
 
 //Creating Schema
@@ -30,17 +39,17 @@ const TodoSchema = new Schema({
   },
 });
 
-const Todo = mongoose.model("Todo", TodoSchema);
+const TodoModel = mongoose.model("Todo", TodoSchema);
 
 //App routes
 
 app.get("/todos", async (req, res) => {
-  const todos = await Todo.find();
+  const todos = await TodoModel.find();
   res.json(todos);
 });
 
 app.post("/todos/new", async (req, res) => {
-  const todos = await new Todo({
+  const todos = await new TodoModel({
     task: req.body.task,
   });
   todos.save();
@@ -48,7 +57,7 @@ app.post("/todos/new", async (req, res) => {
 });
 
 app.delete("/todos/delete/:id", async (req, res) => {
-  const result = await Todo.findByIdAndDelete(req.params.id);
+  const result = await TodoModel.findByIdAndDelete(req.params.id);
   res.json(result);
 });
 
