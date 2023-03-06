@@ -5,6 +5,6 @@
 ## 🟢 Glimpse of the web app : 
 
 <p>Home Page</p>
-<img src="https://raw.githubusercontent.com/VishalArora14/To-Do-List/master/.github/images/todoSS.png" width="800" height="400" />
+<img src="https://raw.githubusercontent.com/VishalArora14/To-Do-List/master/.github/images/todoSS.png" width="900" height="500" />
 
 ### Bookmark this application for instant use 😃
