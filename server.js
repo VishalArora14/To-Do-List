@@ -5,6 +5,8 @@ const cors = require("cors");
 //Creating Express app
 const app = express();
 
+const path = require("path");
+
 // Config
 // dotenv.config({ path: "config/config.env" });
 if (process.env.NODE_ENV !== "production")
