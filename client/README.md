@@ -1,8 +1,8 @@
 # To Do List Web App
 
 #### - An easy to use todo list web app. Which stores your data on a cloud DataBase
-#### - deployed on Heroku + Netlify
-#### - Link : https://vishal-todo-webapp.netlify.app/
+#### - deployed on vercel
+#### - Link : https://va-to-do-list.vercel.app/
 
 ## 🟢 Glimpse of the web app : 
 
